@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # les_2
 Write a code, which will:
 
@@ -14,3 +15,20 @@ example: {'a_1': 5, 'b': 7, 'c': 35, 'g_2': 42}
 Each line of code should be commented with description.
 
 Commit script to git repository and provide link as home task result.
+=======
+# les3
+homEwork:
+  tHis iz your homeWork, copy these Text to variable.
+
+
+
+  You NEED TO normalize it fROM letter CASEs point oF View. also, create one MORE senTENCE witH LAST WoRDS of each existING SENtence and add it to the END OF this Paragraph.
+
+
+
+  it iZ misspeLLing here. fix“iZ” with correct “is”, but ONLY when it Iz a mistAKE.
+
+
+
+  last iz TO calculate nuMber OF Whitespace characteRS in this Tex. caREFULL, not only Spaces, but ALL whitespaces. I got 87.
+>>>>>>> a68815dadc4508c40e12b44144b52b92cfa5a673
