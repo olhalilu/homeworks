@@ -1,4 +1,4 @@
-#lesson 1
+# lesson 1
 Create a python script:
 
 create list of 100 random numbers from 0 to 1000
