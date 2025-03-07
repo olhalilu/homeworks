@@ -1,5 +1,15 @@
+#lesson 1
+Create a python script:
 
-# les_2
+create list of 100 random numbers from 0 to 1000
+sort list from min to max (without using sort())
+calculate average for even and odd numbers
+print both average result in console 
+Each line of code should be commented with description.
+
+Commit script to git repository and provide link as home task result.
+
+# lesson 2
 Write a code, which will:
 
 1. create a list of random number of dicts (from 2 to 10)
@@ -16,7 +26,7 @@ Each line of code should be commented with description.
 
 Commit script to git repository and provide link as home task result.
 =======
-# les3
+# lesson 3
 homEwork:
   tHis iz your homeWork, copy these Text to variable.
 
