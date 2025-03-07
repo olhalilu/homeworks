@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 # les_2
 Write a code, which will:
 
@@ -31,4 +31,4 @@ homEwork:
 
 
   last iz TO calculate nuMber OF Whitespace characteRS in this Tex. caREFULL, not only Spaces, but ALL whitespaces. I got 87.
->>>>>>> a68815dadc4508c40e12b44144b52b92cfa5a673
+
