@@ -5,6 +5,7 @@ import string
 def generate_dictionaries(n,c):#n-number of dictionaries in the list, c-number of keys in dict
     num_dicts = random.randint(2, n)
     list_of_dicts = []
+    print(num_dicts)
 
     # generate each dictionary
     for i in range(num_dicts):
@@ -20,21 +21,37 @@ def generate_dictionaries(n,c):#n-number of dictionaries in the list, c-number o
 
     return list_of_dicts
 
+
 def generate_common_dict(generate_dictionaries):
+    final_dict = {}
+    current_dict_number = 1
     result_dict={}
-    for i, d in enumerate(generate_dictionaries[0:],2):
-        for k, v in d.items():
-            new_key = f"{k}_{i-1}"  # add prefix to key with max value
-            if k in result_dict:#if key is already in result dict
-                if v > result_dict[k]: #and value this key > key in result dict
-                    result_dict[k] = v  #then assign bigger value to this key
-                    result_dict[new_key] = v #write key with prefix to result dict
+    for d in generate_dictionaries:
+        for key, value in d.items():
+            # if key is already in dict
+            if key in final_dict:
+                old_key, old_value, old_dict_number = final_dict[key]
+                if value > old_value:
+                    new_key = f"{key}_{current_dict_number}"
+                    final_dict[key] = (new_key, value, current_dict_number)
             else:
-                result_dict[k] = v #otherwise just add new pair to result dict
-    return dict(sorted(result_dict.items()))
+                final_dict[key] = (key, value, current_dict_number)
+        current_dict_number += 1
+
+    # final dict
+    result_dict = {}
+    for key, (full_key, value, idx) in final_dict.items():
+        # case key taken from 1 dict
+        if full_key == key:
+            result_dict[key] = value
+        else:
+            result_dict[full_key] = value
+
+    return result_dict
 
 
-list_of_dictionaries = generate_dictionaries(4,2)
-print(list_of_dictionaries)
-common_dictionary = generate_common_dict(list_of_dictionaries)
-print(common_dictionary)
+if __name__ == "__main__":
+    list_of_dictionaries = generate_dictionaries(4,2)
+    print(list_of_dictionaries)
+    common_dictionary = generate_common_dict(list_of_dictionaries)
+    print(common_dictionary)
