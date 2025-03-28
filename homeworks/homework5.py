@@ -26,9 +26,8 @@ class Adv:
             file.write(f"Privat Ad: {self.text}, Expiration Date: {self.expiration_date}, Days Left: {self.days_left()}\n")
 
 class Unique:
-    def __init__(self, text, custom_info,city):
+    def __init__(self, text, city):
         self.text = text
-        self.custom_info = custom_info
         self.city = city
 
     def get_weather(self):
@@ -64,7 +63,7 @@ class Unique:
         weather_info = self.get_weather()
         weather,temp,feel = weather_info
         with open(file_name, 'a') as file:
-            file.write(f"Custom: {self.text}, Custom Info: {self.custom_info} weather in city {self.city}:{weather},{temp},{feel}\n")
+            file.write(f"Custom: {self.text}, weather in city {self.city}:{weather},{temp},{feel}\n")
 
 
 
@@ -90,9 +89,8 @@ def main():
             ad_item.pub("news_feed.txt")
         elif choice.lower()  == 'unique':
             text = input("Enter custom item text: ")
-            custom_info = input("Enter custom information: ")
             city = input("enter your city: ")
-            custom_item = Unique(text, custom_info,city)
+            custom_item = Unique(text, city)
             custom_item.publish("news_feed.txt")
 
         else:
