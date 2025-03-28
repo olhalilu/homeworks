@@ -1,6 +1,8 @@
 import os
 import datetime
 import requests
+import csv
+import string
 from homework3 import normalize_sentence
 
 
@@ -69,8 +71,49 @@ class FileProcessor:
         self.file_path = file_path
         self.output_file = output_file
 
-    def process_record(self, record):
+    def count_alpha_words_and_letters(self):
+        """
+        Подсчитывает количество буквенных (alpha) слов и букв.
+        Записывает результаты в CSV файлы: word_count.csv и letter_count.csv.
+        """
+        try:
+            with open(self.output_file, 'r') as file:
+                content = file.read()
 
+                # Удаляем всю пунктуацию
+                translator = str.maketrans('', '', string.punctuation)
+                cleaned_content = content.translate(translator)
+
+                # Разбиваем текст на слова
+                words = cleaned_content.split()
+
+                # Считаем все слова, состоящие только из букв
+                alpha_words = [word for word in words if word.isalpha()]
+                total_word_count = len(alpha_words)
+
+                # Считаем все буквы в тексте
+                all_letters = ''.join(alpha_words)  # Склеиваем все "буквенные слова" вместе
+                total_letter_count = len(all_letters)  # Считаем символы (буквы)
+
+                # Создание/обновление word_count.csv
+                with open("word_count.csv", "w", newline='') as word_file:
+                    writer = csv.writer(word_file)
+                    writer.writerow(["Metric", "Count"])
+                    writer.writerow(["Total number of words", total_word_count])
+
+                # Создание/обновление letter_count.csv
+                with open("letter_count.csv", "w", newline='') as letter_file:
+                    writer = csv.writer(letter_file)
+                    writer.writerow(["Metric", "Count"])
+                    writer.writerow(["Total number of letters", total_letter_count])
+
+                print(f"Word and letter counts have been saved to 'word_count.csv' and 'letter_count.csv'")
+        except FileNotFoundError:
+            print(f"Error: The file '{self.output_file}' was not found.")
+        except Exception as e:
+            print(f"An error occurred while counting words and letters: {str(e)}")
+
+    def process_record(self, record):
         if len(record) == 1:  # if 1 row
             parts = record[0].split(",")
             if len(parts) < 3:
@@ -81,7 +124,7 @@ class FileProcessor:
             text = normalize_sentence(parts[1].strip())
             third_part = normalize_sentence(parts[2].strip())
 
-        elif len(record) == 3:  # if 3  rows
+        elif len(record) == 3:  # if 3 rows
             record_type = normalize_sentence(record[0].strip())
             text = normalize_sentence(record[1].strip())
             third_part = normalize_sentence(record[2].strip())
@@ -133,6 +176,10 @@ class FileProcessor:
             # delete file
             os.remove(self.file_path)
             print(f"Records have been saved to {self.output_file} and the file '{self.file_path}' has been deleted.")
+
+            # ПОДСЧЁТ БУКВЕННЫХ СЛОВ И БУКВ, СОХРАНЕНИЕ В CSV
+            self.count_alpha_words_and_letters()
+
         except FileNotFoundError:
             print(f"Error: The file '{self.file_path}' was not found.")
         except Exception as e:
