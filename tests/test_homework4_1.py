@@ -11,7 +11,7 @@ class TestGenerateDictionaries(unittest.TestCase):
         self.assertGreaterEqual(len(generated), 2)
         self.assertLessEqual(len(generated), n)
 
-    def test_keys_and_values(self):#keys- letters, value-numbers
+    def test_keys_and_values(self):#keys-letters, value-numbers
         n = 5
         c = 3
         generated = generate_dictionaries(n, c)

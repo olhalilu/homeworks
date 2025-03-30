@@ -44,11 +44,6 @@ last is to calculate number of whitespace characters in this tex. carefull, not 
         normalized_text = normalize_sentence(input_text)
         self.assertEqual(normalized_text, 'it is misspelling here.')
 
-    # def test_correct_insert(self):
-    #     input_text = 'check this. whatever it. test test works. really works fine. and word paragraph. '
-    #     self.normalized_text = normalize_sentence(self.input_text)
-    #     self.expected_last_words_sentence = "this it works fine paragraph"
-    #     self.word_after_paragraph = "variable view paragraph here mistake tex whitespaces 87."
 
 
 class TestDefineInsert(unittest.TestCase):

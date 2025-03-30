@@ -53,5 +53,6 @@ def generate_common_dict(generate_dictionaries):
 if __name__ == "__main__":
     list_of_dictionaries = generate_dictionaries(4,2)
     print(list_of_dictionaries)
+    print(len(list_of_dictionaries))
     common_dictionary = generate_common_dict(list_of_dictionaries)
     print(common_dictionary)

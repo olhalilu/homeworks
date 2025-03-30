@@ -55,9 +55,9 @@ def define_insert(my_string2):
     # insert new combined sentence
     part_before = my_string2[:insert_index]
     part_after = my_string2[insert_index:]
-    new_sentence = part_before + '\n' + sentence_to_insert + '\n' + part_after
+    new_sentence = part_before + sentence_to_insert + part_after
 
-    return new_sentence
+    return new_sentence,sentence_to_insert
 
 def calculate_whitespaspaсes(new_sentence):
     symbol_counts = 0
@@ -69,10 +69,10 @@ def calculate_whitespaspaсes(new_sentence):
 
 def process_text(my_string):
     normalized_text = normalize_sentence(my_string)
-    text_with_new_sentence = define_insert(normalized_text)
-    whitespace_count = calculate_whitespaspaсes(text_with_new_sentence)
+    new_sentence, sentence_to_insert = define_insert(normalized_text)
+    whitespace_count = calculate_whitespaspaсes(new_sentence)
     whitespace_count_old_sentence = calculate_whitespaspaсes(normalized_text)
-    return text_with_new_sentence, whitespace_count,whitespace_count_old_sentence
+    return new_sentence, whitespace_count, whitespace_count_old_sentence
 
 
 if __name__ == "__main__":
