@@ -3,6 +3,7 @@ import datetime
 import requests
 import csv
 import string
+import json
 from homework3 import normalize_sentence
 
 
@@ -30,7 +31,8 @@ class Adv:
     def pub(self, file_name):
         with open(file_name, 'a') as file:
             file.write(
-                f"Privat Ad: {self.text}, Expiration Date: {self.expiration_date}, Days Left: {self.days_left()}\n")
+                f"Private Ad: {self.text}, Expiration Date: {self.expiration_date}, Days Left: {self.days_left()}\n"
+            )
 
 
 class Unique:
@@ -54,16 +56,71 @@ class Unique:
             data = response.json()
             weather = data["weather"][0]["description"]
             temp = data["main"]["temp"]
-            feel = "its warm outside=)" if temp > 15 else "its very cold brrrr"
+            feel = "Its warm outside" if temp > 15 else "Its very cold, brrr!"
         else:
             print(f"Error: {response.status_code}, {response.text}")
+            weather, temp, feel = "N/A", "N/A", "Unable to fetch weather data"
+
         return weather, temp, feel
 
     def publish(self, file_name):
         weather_info = self.get_weather()
         weather, temp, feel = weather_info
         with open(file_name, 'a') as file:
-            file.write(f"Custom: {self.text}, Weather in city {self.city}: {weather}, {temp}, {feel}\n")
+            file.write(f"Custom: {self.text}, Weather in city {self.city}: {weather}, {temp}°C, {feel}\n")
+
+#added json file processing
+class JSONProcessor:
+    def __init__(self, json_file_path="input_file.json", output_file="news_feed.txt"):
+        self.json_file_path = json_file_path
+        self.output_file = output_file
+
+    def process_json_record(self, record):
+        try:
+            record_type = normalize_sentence(record["type"].strip())
+            text = normalize_sentence(record["text"].strip())
+            third_part = normalize_sentence(record["third_part"].strip())
+
+            if record_type == "news":
+                city = third_part
+                news_item = News(text, city)
+                news_item.publish(self.output_file)
+            elif record_type == "adv":
+                try:
+                    expiration_date = datetime.datetime.strptime(third_part, "%Y-%m-%d").date()
+                    ad_item = Adv(text, expiration_date)
+                    ad_item.pub(self.output_file)
+                except ValueError:
+                    print(f"Invalid date format in record: {third_part}")
+            elif record_type == "unique":
+                city = third_part
+                unique_item = Unique(text, city)
+                unique_item.publish(self.output_file)
+            else:
+                print(f"Unknown record type: {record_type}")
+        except KeyError as e:
+            print(f"Invalid record format, missing key: {str(e)}")
+
+    def process_json_file(self):
+        try:
+            with open(self.json_file_path, "r") as file:
+                records = json.load(file)
+
+                if isinstance(records, dict):
+                    self.process_json_record(records)
+                elif isinstance(records, list):
+                    for record in records:
+                        self.process_json_record(record)
+                else:
+                    print("Invalid JSON format: expected a dictionary or list of dictionaries.")
+
+            #os.remove(self.json_file_path)
+        except FileNotFoundError:
+            print(f"Error: The file '{self.json_file_path}' was not found.")
+        except json.JSONDecodeError as e:
+            print(f"Error decoding JSON: {str(e)}")
+        except Exception as e:
+            print(f"An error occurred while processing the JSON file: {str(e)}")
 
 
 class FileProcessor:
@@ -75,37 +132,35 @@ class FileProcessor:
         try:
             with open(self.output_file, 'r') as file:
                 content = file.read()
-
                 translator = str.maketrans('', '', string.punctuation)
                 cleaned_content = content.translate(translator)
-
-
                 words = cleaned_content.split()
-
                 alpha_words = [word for word in words if word.isalpha()]
                 total_word_count = len(alpha_words)
                 all_letters = ''.join(alpha_words)
                 total_letter_count = len(all_letters)
 
-
                 with open("word_count.csv", "w", newline='') as word_file:
                     writer = csv.writer(word_file)
-                    writer.writerow(["Metric", "Count"])
-                    writer.writerow(["Total number of words", total_word_count])
+                    writer.writerow(["col1", "col2"])
+                    writer.writerow(["Total number of words: ", total_word_count])
 
-                with open("letter_count.csv", "w", newline='') as letter_file:
-                    writer = csv.writer(letter_file)
-                    writer.writerow(["Metric", "Count"])
-                    writer.writerow(["Total number of letters", total_letter_count])
+                print(f"Word counts have been saved to 'word_count.csv'")
 
-                print(f"Word and letter counts have been saved to 'word_count.csv' and 'letter_count.csv'")
+                with open("letter_count.csv", "w", newline='') as word_file:
+                    writer = csv.writer(word_file)
+                    writer.writerow(["col1", "col2"])
+                    writer.writerow(["Total number of letters: ", total_letter_count])
+
+                print(f"Letter counts have been saved to 'word_count.csv'")
+
         except FileNotFoundError:
             print(f"Error: The file '{self.output_file}' was not found.")
         except Exception as e:
             print(f"An error occurred while counting words and letters: {str(e)}")
 
     def process_record(self, record):
-        if len(record) == 1:  # if 1 row
+        if len(record) == 1:
             parts = record[0].split(",")
             if len(parts) < 3:
                 print(f"Invalid record format: {record[0]}")
@@ -115,7 +170,7 @@ class FileProcessor:
             text = normalize_sentence(parts[1].strip())
             third_part = normalize_sentence(parts[2].strip())
 
-        elif len(record) == 3:  # if 3 rows
+        elif len(record) == 3:
             record_type = normalize_sentence(record[0].strip())
             text = normalize_sentence(record[1].strip())
             third_part = normalize_sentence(record[2].strip())
@@ -142,41 +197,45 @@ class FileProcessor:
             print(f"Unknown record type: {record_type}")
 
     def process_file(self):
-
         try:
             with open(self.file_path, "r") as file:
                 lines = []
                 for line in file:
                     line = line.strip()
-                    if not line:  # skip empty rows
+                    if not line:
                         continue
 
                     lines.append(line)
                     if len(lines) == 3:
                         self.process_record(lines)
                         lines = []
-                    elif len(lines) == 1 and "," in line:
+                    elif len(lines) == 1 and "," in line:  #
                         self.process_record(lines)
                         lines = []
 
                 if len(lines) > 0:
                     self.process_record(lines)
 
-            # delete file
-            os.remove(self.file_path)
-            print(f"Records have been saved to {self.output_file} and the file '{self.file_path}' has been deleted.")
+            #os.remove(self.file_path)
             self.count_alpha_words_and_letters()
-
         except FileNotFoundError:
             print(f"Error: The file '{self.file_path}' was not found.")
         except Exception as e:
             print(f"An error occurred while processing the file: {str(e)}")
 
 def main():
-
-    file_path = input("Enter file path or press Enter to use default (input.txt): ").strip() or "input.txt"
-    processor = FileProcessor(file_path=file_path)
-    processor.process_file()
+    input_type = input("Enter input type ('txt' or 'json'): ").strip().lower()
+    if input_type == "txt":
+        file_path = input("Enter file path or press Enter to use default (input.txt): ").strip() or "input.txt"
+        processor = FileProcessor(file_path=file_path)
+        processor.process_file()
+    elif input_type == "json":
+        json_file_path = input(
+            "Enter JSON file path or press Enter to use default (input_file.json): ").strip() or "input_file.json"
+        json_processor = JSONProcessor(json_file_path=json_file_path)
+        json_processor.process_json_file()
+    else:
+        print("Invalid input type. Please enter 'txt' or 'json'.")
 
 
 if __name__ == "__main__":

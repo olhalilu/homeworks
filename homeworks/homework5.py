@@ -38,7 +38,7 @@ class Unique:
         params = {
             "q": self.city,
             "appid": api_key,
-            "units": "metric"  # Для получения температуры в градусах Цельсия
+            "units": "metric"
         }
 
         # GET-запрос

@@ -108,9 +108,7 @@ class FileProcessor:
             print(f"Unknown record type: {record_type}")
 
     def process_file(self):
-        """
-        Читает файл и обрабатывает записи.
-        """
+
         try:
             with open(self.file_path, "r") as file:
                 lines = []
@@ -140,9 +138,6 @@ class FileProcessor:
 
 
 def main():
-    """
-    Запускает обработку данных из файла.
-    """
     file_path = input("Enter file path or press Enter to use default (input.txt): ").strip() or "input.txt"
     processor = FileProcessor(file_path=file_path)
     processor.process_file()

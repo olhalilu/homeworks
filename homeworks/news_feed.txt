@@ -1,4 +1,7 @@
-Custom: test text, Weather in city batumi: clear sky, 21.42, its warm outside=)
-Custom: test text, Weather in city batumi: clear sky, 21.42, its warm outside=)
-Custom: test text, Weather in city batumi: clear sky, 21.42, its warm outside=)
-Custom: test text, Weather in city batumi: clear sky, 21.42, its warm outside=)
+Custom: test text, Weather in city kyiv: overcast clouds, 8.73°C, Its very cold, brrr!
+Custom: test text, Weather in city kyiv: overcast clouds, 8.73°C, Its very cold, brrr!
+Custom: test text, Weather in city kyiv: overcast clouds, 8.73°C, Its very cold, brrr!
+Custom: test text, Weather in city kyiv: overcast clouds, 8.73°C, Its very cold, brrr!
+News: the main news, City: chicago, Date: 2025-03-31 00:49:23
+Private Ad: super deal! only today, Expiration Date: 2023-12-31, Days Left: -456
+Custom: the weather in this location is nice, Weather in city miami: moderate rain, 22.02°C, Its warm outside

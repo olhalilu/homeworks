@@ -1,0 +1,17 @@
+[
+    {
+        "type": "news",
+        "text": "the main news",
+        "third_part": "Chicago"
+    },
+    {
+        "type": "adv",
+        "text": "super deal! only today",
+        "third_part": "2023-12-31"
+    },
+    {
+        "type": "unique",
+        "text": "The weather in this location is nice",
+        "third_part": "Miami"
+    }
+]
