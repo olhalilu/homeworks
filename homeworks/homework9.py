@@ -288,7 +288,7 @@ def main():
         xml_processor = xmlProcessor(xml_file_path=xml_file_path)
         xml_processor.process_xml_file()
     else:
-        print("Invalid input type. Please enter 'txt' or 'json'.")
+        print("Invalid input type. Please enter 'txt' ,'json' or 'xml")
 
 
 if __name__ == "__main__":
