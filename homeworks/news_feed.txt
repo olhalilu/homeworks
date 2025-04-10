@@ -1,7 +1,22 @@
-Custom: test text, Weather in city kyiv: overcast clouds, 8.73°C, Its very cold, brrr!
-Custom: test text, Weather in city kyiv: overcast clouds, 8.73°C, Its very cold, brrr!
-Custom: test text, Weather in city kyiv: overcast clouds, 8.73°C, Its very cold, brrr!
-Custom: test text, Weather in city kyiv: overcast clouds, 8.73°C, Its very cold, brrr!
-News: the main news, City: chicago, Date: 2025-03-31 00:49:23
-Private Ad: super deal! only today, Expiration Date: 2023-12-31, Days Left: -456
-Custom: the weather in this location is nice, Weather in city miami: moderate rain, 22.02°C, Its warm outside
+
+Private Ad: super deal! only today in xml, Expiration Date: 2023-12-31, Days Left: -466
+Custom: the weather in this location is nice xml test, Weather in city miami: few clouds, 19.14ï¿½C, Its warm outside
+News: the main news for testing xml, City: chicago, Date: 2025-04-10 15:31:27
+Private Ad: super deal! only today in xml, Expiration Date: 2023-12-31, Days Left: -466
+Custom: the weather in this location is nice xml test, Weather in city miami: few clouds, 18.99°C, Its warm outside
+News: the main news for testing xml, City: chicago, Date: 2025-04-10 15:32:12
+Private Ad: super deal! only today in xml, Expiration Date: 2025-12-31, Days Left: 265
+Custom: the weather in this location is nice xml test, Weather in city tirana: scattered clouds, 14.49°C, Its very cold, brrr!
+News: the main news for testing xml, City: chicago, Date: 2025-04-10 15:32:45
+Private Ad: super deal! only today in xml, Expiration Date: 2025-12-31, Days Left: 265
+Custom: the weather in this location is nice xml test, Weather in city tirana: scattered clouds, 14.49°C, Its very cold, brrr!
+News: the main news, City: chicago, Date: 2025-04-10 15:39:55
+Private Ad: super deal! only today, Expiration Date: 2023-12-31, Days Left: -466
+Custom: the weather in this location is nice, Weather in city miami: few clouds, 19.37°C, Its warm outside
+Custom: test text, Weather in city kyiv: snow, 0.96°C, Its very cold, brrr!
+News: the main news, City: chicago, Date: 2025-04-10 15:46:07
+Private Ad: super deal! only today, Expiration Date: 2023-12-31, Days Left: -466
+Custom: the weather in this location is nice, Weather in city miami: few clouds, 19.37°C, Its warm outside
+News: the main news for testing xml, City: chicago, Date: 2025-04-10 15:46:15
+Private Ad: super deal! only today in xml, Expiration Date: 2025-12-31, Days Left: 265
+Custom: the weather in this location is nice xml test, Weather in city tirana: scattered clouds, 14.49°C, Its very cold, brrr!

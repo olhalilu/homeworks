@@ -1,0 +1,17 @@
+<root>
+    <item>
+        <type>news</type>
+        <text>the main news for testing xml</text>
+        <third_part>Chicago</third_part>
+    </item>
+    <item>
+        <type>adv</type>
+        <text>super deal! only today in xml</text>
+        <third_part>2025-12-31</third_part>
+    </item>
+    <item>
+        <type>unique</type>
+        <text>The weather in this location is nice xml test</text>
+        <third_part>Tirana</third_part>
+    </item>
+</root>
