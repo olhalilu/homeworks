@@ -1,0 +1,11 @@
+﻿ParentId,AccountNumber,AnnualRevenue,BillingCountry,BillingCity,BillingState,BillingPostalCode,BillingStreet,Fax,Industry,Name,NumberOfEmployees,Phone,Rating
+10001,11345,10000,US,New York,NY ,10038,12 Spruce St Suite 20,123-456-7890,Technology,ClientLink ABC Corp,30,(212) 555-1234,Warm
+88123,22555,4400,US,Los Angeles,CA,90026,15 Sunset Blvd Suite 20,234-567-8901,Finance,ClientLink XYZ Inc,40,(310) 555-5678,Warm
+22555,33444,50000,US,Chicago,IL,60606,22 Wacker Dr Suite 20,345-678-9012,Healthcare,ClientLink QWE Ltd,50,(312) 555-9012,Warm
+0,55666,60000,US,Houston,TX,77019,18 Kirby Dr Suite 20,456-789-0123,Manufacturing,ClientLink RTY Plc,6,713-555-3456,Cold
+0,77888,70000,US,Phoenix,AZ,85016,10 Camelback Rd Suite 20,567-890-1234,Education,ClientLink FDS Pvt,70,602-555-7890,Cold
+0,88123,80000,US,Philadelphia,PA,19107,40 Broad St Suite 20,888-555-4444,Manufacturing,ClientLink A Corp,60,2155556543,Hot
+0,99001,90000,CA,Toronto,ON,M5J 2L1,55 Harbour St Suite 22,333-222-1111,Manufacturing,ClientLink B Enterprise,40,4085554321,Hot
+88123,10001,100000,GB,London,ENG,NW8 9AY,3 Abbey Rd Suite 20,234-123-7534,Manufacturing,ClientLink C Ltd,50,(305) 555-9876,Warm
+1255,1048297,17000,CA,Ottawa,ON,M6J 2L2,500 Venture Dr,114-123-7534,Finance,ClientLink TS Ltd,8,+1 330-683-0075 ext 2412,Hot
+1713,10586,12000,US,Chicago,IL,28500,55 Harbour Sq Suite 20,111-222-5654,Marketing,ClientLink EE Ltd,10,711-556-3456,Warm
